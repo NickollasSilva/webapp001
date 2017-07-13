@@ -1,4 +1,4 @@
 <?php
     require("connect.php");
-    insertNewOp("epic", "epic", "epic");
+    insertNewOp($connection, "epic", "epic", 2, 2, 'h');
 ?>
