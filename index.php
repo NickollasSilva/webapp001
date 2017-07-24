@@ -21,6 +21,7 @@
                         <th>Nome da Mercadoria</th>
                         <th>Quantidade</th>
                         <th>Preco</th>
+                        <th>Valor Total</th>
                         <th>Tipo do Negocio</th>
                     </tr>
                 </thead>
@@ -35,8 +36,15 @@
                                 echo "<td>" . $row["ds_productType"] . "</td>";
                                 echo "<td>" . $row["nm_product"] . "</td>";
                                 echo "<td>" . $row["quantity"] . "</td>";
-                                echo "<td>" . $row["price"] . "</td>";
-                                echo "<td>" . $row["cd_tradeType"] . "</td>";
+                                echo "<td>R$ " . money_format('%i', $row["price"]) . "</td>";
+                                $vltotal = $row["price"] * $row["quantity"];
+                                setlocale(LC_MONETARY,"en_US");
+                                echo "<td>R$ " . money_format('%i', $vltotal) . "</td>";
+                                if(strcmp($row["cd_tradeType"], 'C')){
+                                    echo "<td>Compra</td>";    
+                                } else {
+                                    echo "<td>Venda</td>";   
+                                }
                                 echo "</tr>";
                             }
                         } else {
